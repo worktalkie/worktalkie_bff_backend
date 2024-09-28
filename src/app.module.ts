@@ -16,14 +16,12 @@ import { MissionModule } from './scenario/mission/mission.module';
     ConversationModule,
     MagazineModule,
     ScenarioModule,
+    MissionModule,
     RouterModule.register([
       {
         path: '/scenarios',
         module: ScenarioModule,
-        children: [
-          { path: '/analysis', module: ScenarioModule },
-          { path: '/missions', module: MissionModule },
-        ],
+        children: [{ path: '/analysis', module: ScenarioModule }],
       },
     ]),
   ],

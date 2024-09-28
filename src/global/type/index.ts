@@ -30,6 +30,29 @@ export declare namespace MemberType {
   }
 }
 
+export declare namespace ScenarioType {
+  type ScenarioPagingDto = ListType;
+
+  export interface DetailScenarioDto {
+    title: string;
+    contents: string;
+    missions: object[];
+    tips: object[];
+  }
+}
+
+export declare namespace MissionType {
+  interface missionResultResponseDto {
+    id: string;
+    title: string;
+    result: boolean;
+  }
+
+  interface MissionDto {
+    title: string;
+  }
+}
+
 export interface BaseResponse<T> {
   isSuccess: boolean;
   code: string;
