@@ -24,7 +24,7 @@ export declare namespace MemberType {
     password: string;
   }
 
-  export interface ProficiencyDto {
+  interface ProficiencyDto {
     score: number;
     dailyResult?: object[];
   }
@@ -33,7 +33,7 @@ export declare namespace MemberType {
 export declare namespace ScenarioType {
   type ScenarioPagingDto = ListType;
 
-  export interface DetailScenarioDto {
+  interface DetailScenarioDto {
     title: string;
     contents: string;
     missions: object[];
@@ -49,7 +49,62 @@ export declare namespace MissionType {
   }
 
   interface MissionDto {
+    id: string;
     title: string;
+  }
+}
+
+// conversation은 유저가 대화하는 엔티티. scenario는 유저가 선택할 대화 내용의 정보 엔티티
+export declare namespace ConversationType {
+  interface ConversationDto {
+    id: string;
+    title: string;
+    category: string;
+    eta: number;
+  }
+
+  interface CreateRequestDto {
+    memberId: string;
+    scenarioId: string;
+  }
+
+  interface CreateResponseDto {
+    sessionId: string;
+  }
+
+  interface ChatRequestDto {
+    request: string;
+  }
+
+  interface ChatResponseDto {
+    response: string;
+  }
+
+  interface ChatHistoryDto {
+    sessionId: string;
+    isAI: boolean;
+    chat: string;
+    feedback?: string;
+    isGood?: boolean;
+    createdAt: string;
+  }
+
+  interface EndResponseDto {
+    sessionId: string;
+    result: AnalysisType.ResultResponseDto;
+  }
+}
+
+export declare namespace AnalysisType {
+  interface ResultResponseDto {
+    sessionId: string;
+    successFlag: boolean;
+    missionRate: number;
+    conversationRate: number;
+    mannerRate: number;
+    missionResult: MissionType.missionResultResponseDto[];
+    conversationProficiency: object;
+    conversationHistory: ConversationType.ChatHistoryDto[];
   }
 }
 

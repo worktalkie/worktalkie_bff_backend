@@ -4,7 +4,7 @@ import { TypedParam, TypedRoute } from '@nestia/core';
 import { BaseResponse, MissionType } from '../../global/type';
 import { createResponse } from '../../global/util/mapper';
 
-@Controller('/api/scenarios')
+@Controller()
 export class MissionController {
   constructor(private readonly missionService: MissionService) {}
 
@@ -24,7 +24,7 @@ export class MissionController {
 
   /**
    * @summary 시나리오의 미션 결과 조회 API
-   * @tag mission
+   * @tag scenario
    * @param scenarioId
    * @return 미션 결과 목록
    */
@@ -38,11 +38,12 @@ export class MissionController {
 
   /**
    * @summary 미션 성공 전달 API
+   * @tag scenario
    * @param missionId
    */
-  @TypedRoute.Patch('/missions/:id')
+  @TypedRoute.Patch('/missions/:missionId')
   async clearMission(
-    @TypedParam('id') missionId: string,
+    @TypedParam('missionId') missionId: string,
   ): Promise<BaseResponse<object>> {
     await this.missionService.clearMission(missionId);
     return createResponse(HttpStatus.OK);

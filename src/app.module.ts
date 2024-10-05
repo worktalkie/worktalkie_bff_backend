@@ -19,9 +19,14 @@ import { MissionModule } from './scenario/mission/mission.module';
     MissionModule,
     RouterModule.register([
       {
-        path: '/scenarios',
+        path: '/api/scenarios',
         module: ScenarioModule,
         children: [{ path: '/analysis', module: ScenarioModule }],
+      },
+      {
+        path: '/api/scenarios',
+        module: ScenarioModule,
+        children: [{ path: '', module: MissionModule }],
       },
     ]),
   ],

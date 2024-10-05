@@ -36,4 +36,30 @@ export class ScenarioController {
     const result = await this.scenarioService.getDetailScenario(scenarioId);
     return createResponse(HttpStatus.OK, result);
   }
+
+  /**
+   * @summary 카테고리 입력에 따른 시나리오 조회 API
+   * @tag scenario
+   * @param category
+   * @return ScenarioType.ScenarioPagingDto[]
+   */
+  @TypedRoute.Get(':category')
+  async getConversationsByCategory(
+    @TypedParam('category') category: string,
+  ): Promise<BaseResponse<ScenarioType.ScenarioPagingDto>> {
+    const conversations =
+      await this.scenarioService.getScenariosByCategory(category);
+    return createResponse(HttpStatus.OK, conversations);
+  }
+
+  /**
+   * @summary 카테고리 조회 API
+   * @tag scenario
+   * @return 카테고리 목록
+   */
+  @TypedRoute.Get('/categories')
+  async getCategories(): Promise<BaseResponse<string[]>> {
+    const categories = await this.scenarioService.getCategories();
+    return createResponse(HttpStatus.OK, categories);
+  }
 }

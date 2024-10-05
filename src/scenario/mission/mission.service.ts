@@ -5,7 +5,10 @@ export class MissionService {
     // TODO: 미션 서비스에서 미션 조회해오게 구현
     console.log(scenarioId);
 
-    return [{ title: 'scenarioId' }, { title: 'scenarioIddddd' }];
+    return [
+      { id: 'mi1', title: 'scenarioId' },
+      { id: 'mi2', title: 'scenarioIddddd' },
+    ];
   }
 
   async getMissionsResult(
