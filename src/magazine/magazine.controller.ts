@@ -26,7 +26,7 @@ export class MagazineController {
    */
   @TypedRoute.Get(':id')
   async getDetailMagazine(
-    @TypedParam('id') magazineId: number,
+    @TypedParam('id') magazineId: string,
   ): Promise<object> {
     return await this.magazineService.getDetailMagazine(magazineId);
   }

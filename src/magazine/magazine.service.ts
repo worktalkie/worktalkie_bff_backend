@@ -5,7 +5,7 @@ export class MagazineService {
     return paginationDto;
   }
 
-  async getDetailMagazine(magazineId: number): Promise<object> {
+  async getDetailMagazine(magazineId: string): Promise<object> {
     return { id: magazineId };
   }
 }
