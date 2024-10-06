@@ -1,0 +1,20 @@
+{
+  "name": "worktalkie-bff-apis",
+  "version": "0.0.1",
+  "description": "초기 목업 서버 - 24.10.06",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git"
+  },
+  "author": "Hyunstone",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "#readme",
+  "dependencies": {
+    "@nestia/fetcher": "^3.14.0",
+    "typia": "^6.10.2"
+  }
+}
