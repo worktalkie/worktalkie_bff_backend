@@ -2,7 +2,7 @@ import { AnalysisType } from '../../global/type';
 
 export class AnalysisService {
   async getAnalysisResult(
-    scenarioId: number,
+    scenarioId: string,
   ): Promise<AnalysisType.ResultResponseDto> {
     // TODO: scenarioId 입력으로 조회. scenarioId 입력 유효성 검사
     console.log(scenarioId);

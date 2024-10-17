@@ -13,8 +13,9 @@ export const SwaggerSetting = async (app: INestApplication) => {
   const swaggerDocument = JSON.parse(swaggerConfig);
   const configService = app.get(ConfigService);
 
-  const env = configService.get('NODE_ENV');
-  swaggerDocument.servers.at(0).url = configService.get(`${env}_SERVER_HOST`);
+  const host = configService.get('HOST');
+  const port = configService.get('PORT');
+  swaggerDocument.servers[0].url = `http://${host}:${port}`;
 
   SwaggerModule.setup('api/nestia', app, swaggerDocument);
   SwaggerModule.setup('api', app, swaggerDocument);

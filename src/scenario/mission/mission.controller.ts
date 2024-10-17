@@ -1,38 +1,42 @@
 import { Controller, HttpStatus } from '@nestjs/common';
 import { MissionService } from './mission.service';
-import { TypedParam, TypedRoute } from '@nestia/core';
-import { BaseResponse, MissionType } from '../../global/type';
+import { TypedParam, TypedQuery, TypedRoute } from '@nestia/core';
+import { BaseResponse, MissionType, ScenarioType } from '../../global/type';
 import { createResponse } from '../../global/util/mapper';
 
-@Controller()
+@Controller('/api/missions')
 export class MissionController {
   constructor(private readonly missionService: MissionService) {}
 
   /**
    * @summary 시나리오의 미션 조회 API
    * @tag scenario
-   * @param scenarioId
+   * @param scenarioIdDto
    * @return 미션들
    */
-  @TypedRoute.Get('/:id/missions')
+  @TypedRoute.Get('/')
   async getMissions(
-    @TypedParam('id') scenarioId: number,
+    @TypedQuery() scenarioIdDto: ScenarioType.ScenarioIdDto,
   ): Promise<BaseResponse<MissionType.MissionDto[]>> {
-    const result = await this.missionService.getMissions(scenarioId);
+    const result = await this.missionService.getMissions(
+      scenarioIdDto.scenarioId,
+    );
     return createResponse(HttpStatus.OK, result);
   }
 
   /**
    * @summary 시나리오의 미션 결과 조회 API
    * @tag scenario
-   * @param scenarioId
+   * @param scenarioIdDto
    * @return 미션 결과 목록
    */
-  @TypedRoute.Get('/:id/missions')
+  @TypedRoute.Get('/results')
   async getMissionsResult(
-    @TypedParam('id') scenarioId: string,
+    @TypedQuery() scenarioIdDto: ScenarioType.ScenarioIdDto,
   ): Promise<BaseResponse<MissionType.missionResultResponseDto[]>> {
-    const result = await this.missionService.getMissionsResult(scenarioId);
+    const result = await this.missionService.getMissionsResult(
+      scenarioIdDto.scenarioId,
+    );
     return createResponse(HttpStatus.OK, result);
   }
 
@@ -41,7 +45,7 @@ export class MissionController {
    * @tag scenario
    * @param missionId
    */
-  @TypedRoute.Patch('/missions/:missionId')
+  @TypedRoute.Patch('/:missionId')
   async clearMission(
     @TypedParam('missionId') missionId: string,
   ): Promise<BaseResponse<object>> {

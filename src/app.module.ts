@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MemberModule } from './member/member.module';
@@ -19,18 +18,15 @@ import { MissionModule } from './scenario/mission/mission.module';
     MissionModule,
     RouterModule.register([
       {
-        path: '/api/scenarios',
+        path: '',
         module: ScenarioModule,
-        children: [{ path: '/analysis', module: ScenarioModule }],
-      },
-      {
-        path: '/api/scenarios',
-        module: ScenarioModule,
-        children: [{ path: '', module: MissionModule }],
+        children: [
+          { path: '', module: MissionModule },
+          { path: '', module: ScenarioModule },
+        ],
       },
     ]),
   ],
-  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

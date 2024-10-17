@@ -3,8 +3,16 @@ import { AppModule } from './app.module';
 import { SwaggerSetting } from './global/config/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'log', 'debug'],
+  });
+  app.enableCors();
+
   await SwaggerSetting(app);
+
   await app.listen(3000);
 }
-bootstrap();
+
+bootstrap().then(() =>
+  console.log(`Server is running on ${process.env.HOST}:${process.env.PORT}`),
+);

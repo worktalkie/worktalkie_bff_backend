@@ -5,6 +5,10 @@ import { HttpStatus } from '@nestjs/common';
 export type TG<T> = T[] | T;
 export type TObj<T extends object> = { [key: string]: T };
 
+export interface IdType {
+  id: string;
+}
+
 export declare namespace MemberType {
   interface CreateRequestDto {
     name: string;
@@ -38,6 +42,16 @@ export declare namespace ScenarioType {
     contents: string;
     missions: object[];
     tips: object[];
+  }
+
+  interface ScenarioIdDto {
+    scenarioId: string;
+  }
+
+  interface CategoryDto {
+    id: string;
+    title: string;
+    imageUrl: string;
   }
 }
 
@@ -127,7 +141,7 @@ export interface EnumType {
 }
 
 export interface ListType {
-  data: any[];
+  contents: any[];
   count: number;
 }
 

@@ -4,12 +4,12 @@ export class ScenarioService {
   async getScenariosByPaging(paginationDto: PaginationDto): Promise<ListType> {
     return {
       count: 2,
-      data: [{ scenarios: paginationDto }, { scenarios: paginationDto }],
+      contents: [{ scenarios: paginationDto }, { scenarios: paginationDto }],
     };
   }
 
   async getDetailScenario(
-    scenarioId: number,
+    scenarioId: string,
   ): Promise<ScenarioType.DetailScenarioDto> {
     console.log(scenarioId);
 
@@ -21,15 +21,15 @@ export class ScenarioService {
     };
   }
 
-  async getScenariosByCategory(
-    category: string,
+  async getScenariosByCategoryId(
+    categoryId: string,
   ): Promise<ScenarioType.ScenarioPagingDto> {
-    // TODO: category 입력으로 조회. category 입력 유효성 검사
-    console.log(category);
+    // TODO: categoryId 입력으로 조회. categoryId 입력 유효성 검사
+    console.log(categoryId);
 
     return {
       count: 5,
-      data: [
+      contents: [
         {
           id: '1',
           title: '외부에서 온 전화 대응하기',
@@ -64,14 +64,38 @@ export class ScenarioService {
     };
   }
 
-  async getCategories(): Promise<string[]> {
+  async getCategories(): Promise<ScenarioType.CategoryDto[]> {
     return [
-      '비즈니스 통화하기',
-      '회사 내 스몰토크하기',
-      '연차 사용 및 병가 문의하기',
-      '업무상황 보고하기',
-      '타 부서와 협업하기',
-      '불합리 대처하기',
+      {
+        id: '1ad',
+        title: '비즈니스 통화하기',
+        imageUrl: 'https://naver@dasdsdghdshfdh.com',
+      },
+      {
+        id: '2gs',
+        title: '회사 내 스몰토크하기',
+        imageUrl: 'https://naver2.com',
+      },
+      {
+        id: '3sf',
+        title: '연차 사용 및 병가 문의하기',
+        imageUrl: 'https://naver3.com',
+      },
+      {
+        id: '4gdfh',
+        title: '업무상황 보고하기',
+        imageUrl: 'https://nave4r.com',
+      },
+      {
+        id: '5sd',
+        title: '타 부서와 협업하기',
+        imageUrl: 'https://n5aver.com',
+      },
+      {
+        id: '6sghd',
+        title: '불합리 대처하기',
+        imageUrl: 'https://na6ver.com',
+      },
     ];
   }
 }

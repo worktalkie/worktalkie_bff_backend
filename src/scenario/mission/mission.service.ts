@@ -1,7 +1,7 @@
 import { MissionType } from '../../global/type';
 
 export class MissionService {
-  async getMissions(scenarioId: number): Promise<MissionType.MissionDto[]> {
+  async getMissions(scenarioId: string): Promise<MissionType.MissionDto[]> {
     // TODO: 미션 서비스에서 미션 조회해오게 구현
     console.log(scenarioId);
 

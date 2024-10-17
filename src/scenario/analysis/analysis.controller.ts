@@ -16,7 +16,7 @@ export class AnalysisController {
    */
   @TypedRoute.Get('/:scenarioId')
   async getAnalysisResult(
-    @TypedParam('scenarioId') scenarioId: number,
+    @TypedParam('scenarioId') scenarioId: string,
   ): Promise<BaseResponse<AnalysisType.ResultResponseDto>> {
     const result = await this.analysisService.getAnalysisResult(scenarioId);
     return createResponse(HttpStatus.OK, result);
